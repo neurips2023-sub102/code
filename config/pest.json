@@ -1,0 +1,75 @@
+{
+    "n_trials": 5,
+    "n_BO_iters": 25,
+    "seed": 1,
+    "test_function": "pest",
+    "n_init_points": 20,
+    "batch_size": 4,
+    "models": {
+      "gp": {
+        "model": "gp"
+      },
+      "hmc": {
+        "model": "hmc",
+        "regnet_dims": [
+          128,
+          128,
+          128,
+          128
+        ],
+        "regnet_activation": "tanh",
+        "n_chains": 1,
+        "n_samples_per_chain": 200,
+        "n_burn_in": 200,
+        "noise_var": 10.0,
+        "prior_var": 3.0,
+        "step_size": 0.01,
+        "path_length": 0.05,
+        "pretrain_steps": 1000,
+        "adapt_step_size": true,
+        "adapt_noise": false,
+        "standardize_y": true
+      },
+      "ensemble": {
+        "model": "ensemble",
+        "n_models": 10,
+        "train_prop": 0.8,
+        "regnet_dims": [
+          128,
+          128,
+          128
+        ],
+        "regnet_activation": "tanh",
+        "train_steps": 5000,
+        "weight_decay": 0.01,
+        "adapt_noise": false,
+        "noise_var": 0.1
+      },
+      "sghmc": {
+        "model": "bohamiann",
+        "regnet_dims": [
+          128,
+          128,
+          128,
+          128
+        ],
+        "regnet_activation": "tanh"
+      },
+      "dkl": {
+        "model": "dkl",
+        "regnet_dims": [
+          128,
+          128,
+          128,
+          128
+        ],
+        "regnet_activation": "tanh",
+        "pretrain_steps": 1000,
+        "train_steps": 5000,
+        "learning_rate": 0.0002
+      },
+      "ibnn": {
+        "model": "nngp"
+      }
+    }
+  }
